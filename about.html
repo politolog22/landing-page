@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="./" />
+  <title>Обо мне — Артём Дубовик</title>
+  <meta name="description" content="Медиаменеджер Артём Дубовик — о себе, ценностях и подходе к работе." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<header class="mobile-header">
+  <div class="mobile-header-logo">
+    <img src="images/avatar.jpg" alt="АД" class="mobile-header-avatar" />
+    <span class="mobile-header-name">Артём Дубовик</span>
+  </div>
+  <div class="mobile-header-actions">
+    <a href="tel:+79363332202" class="mobile-header-contact" title="+7 936 333 22 02">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="mailto:artem@dubovik.info" class="mobile-header-contact" title="artem@dubovik.info">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+    <button class="mobile-header-theme-btn" id="mobileThemeBtn" onclick="toggleThemeFromPanel()" title="Сменить тему">
+      <i class="fa-solid fa-moon" id="mobileThemeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <div class="sidebar-avatar" style="padding:0;overflow:hidden;"><img src="images/avatar.jpg" alt="Артём Дубовик" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;"></div>
+        <div class="sidebar-name">Артём Дубовик</div>
+        <div class="sidebar-role">Медиаменеджер</div>
+        <div class="sidebar-contacts">
+          <a href="tel:+79363332202" class="sidebar-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            +7 936 333 22 02
+          </a>
+          <a href="mailto:artem@dubovik.info" class="sidebar-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            artem@dubovik.info
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav-group">
+        <div class="nav-group-label">Навигация</div>
+        <a href="index.html" class="nav-item">
+          <i class="fa-solid fa-house nav-icon"></i>
+          Главная
+        </a>
+        <a href="about.html" class="nav-item active">
+          <i class="fa-solid fa-user nav-icon"></i>
+          Обо мне
+        </a>
+        <a href="index.html#career" class="nav-item">
+          <i class="fa-solid fa-briefcase nav-icon"></i>
+          Карьера
+        </a>
+        <a href="projects.html" class="nav-item">
+          <i class="fa-solid fa-folder-open nav-icon"></i>
+          Проекты
+        </a>
+      </nav>
+
+      <nav class="nav-group">
+        <div class="nav-group-label">Документы</div>
+        <a href="#" class="nav-item btn-download-resume">
+          <i class="fa-solid fa-file-arrow-down nav-icon"></i>
+          Скачать резюме
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-social">
+          <a href="https://t.me/artemdubovik" class="social-link" target="_blank" title="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+            Telegram
+          </a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Переключить тему">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+          <span id="themeLabel">Светлая тема</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+    <div class="page-content">
+
+      <!-- Hero -->
+      <section class="page-hero fade-in">
+        <span class="greeting">Обо мне</span>
+        <h1 class="page-title">Артём <span class="highlight">Дубовик</span></h1>
+        <p class="page-subtitle">Медиаменеджер и многопрофильный digital-специалист с более чем 12-летним опытом работы в медиа, технологиях и маркетинге.</p>
+      </section>
+
+      <!-- Bio -->
+      <section class="section fade-in fade-in-delay-1" style="margin-top: 0;">
+        <div class="about-intro">
+          <p>
+            Я занимаюсь развитием цифровых медиа, запуском медиапроектов и управлением digital-направлениями в медиакомпаниях. Основные компетенции включают контент-стратегию, развитие аудитории, digital-маркетинг, технологическую разработку медиаплатформ и управление командами.
+          </p>
+
+          <div class="bio-hidden" id="bioHidden">
+            <p>
+              За время работы прошёл путь от редакционной деятельности до стратегического управления цифровыми подразделениями медиабрендов. В разное время отвечал за запуск медиапроектов, развитие digital-инфраструктуры, внедрение технологических решений и формирование систем работы с аудиторией.
+            </p>
+            <p>
+              Моя экспертиза охватывает несколько направлений: редакционная работа, разработка цифровых продуктов, маркетинг и развитие медиаплатформ. Такой опыт позволяет комплексно управлять медиапроектами — от идеи и контентной стратегии до технологической реализации и масштабирования.
+            </p>
+            <p>
+              Отдельное направление моей работы — формирование и управление командами. В разные периоды я создавал и руководил мультидисциплинарными коллективами, включая редакции, продакшен, разработчиков, дизайнеров и специалистов по digital-маркетингу.
+            </p>
+            <p>
+              Сегодня моя специализация — запуск новых медиапроектов, развитие существующих digital-платформ и построение устойчивых систем управления контентом, технологией и аудиторией.
+            </p>
+          </div>
+
+          <button class="btn-read-more" id="btnReadMore" onclick="toggleBio()">
+            Подробнее <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section fade-in">
+        <div class="section-header">
+          <span class="section-title">Образование и курсы</span>
+        </div>
+
+        <div class="passport-block">
+          <div class="passport-header">
+            <span class="passport-label">ЛИЧНОЕ ДЕЛО</span>
+            <span class="passport-id">ID: DUBOVIK-001</span>
+          </div>
+
+          <div class="passport-rows">
+
+            <div class="passport-row" data-detail="Средняя школа, Республика Крым. Завершение базового образования.">
+              <span class="passport-num">001</span>
+              <span class="passport-field">ГОД</span>
+              <span class="passport-value">2012</span>
+              <span class="passport-field">СОБЫТИЕ</span>
+              <span class="passport-value passport-value--main">Среднее образование</span>
+              <span class="passport-field">МЕСТО</span>
+              <span class="passport-value">Республика Крым</span>
+              <span class="passport-stamp">✓</span>
+            </div>
+
+            <div class="passport-row" data-detail="Прохождение военной службы по призыву. Воинская часть, г. Евпатория.">
+              <span class="passport-num">002</span>
+              <span class="passport-field">ГОД</span>
+              <span class="passport-value">2013</span>
+              <span class="passport-field">СОБЫТИЕ</span>
+              <span class="passport-value passport-value--main">Военная служба</span>
+              <span class="passport-field">МЕСТО</span>
+              <span class="passport-value">г. Евпатория, Крым</span>
+              <span class="passport-stamp">✓</span>
+            </div>
+
+            <div class="passport-row" data-detail="Специальность: Политология и Международные отношения. Полный курс высшего образования, 4 года.">
+              <span class="passport-num">003</span>
+              <span class="passport-field">ПЕРИОД</span>
+              <span class="passport-value">2014 — 2018</span>
+              <span class="passport-field">СОБЫТИЕ</span>
+              <span class="passport-value passport-value--main">Высшее образование</span>
+              <span class="passport-field">СПЕЦИАЛЬНОСТЬ</span>
+              <span class="passport-value">Политология и МО</span>
+              <span class="passport-stamp">✓</span>
+            </div>
+
+            <div class="passport-row" data-detail="Профессиональная подготовка. Учебно-экспертный центр «Русское товарищество». Дополнительная квалификация.">
+              <span class="passport-num">004</span>
+              <span class="passport-field">ТИП</span>
+              <span class="passport-value">Доп. образование</span>
+              <span class="passport-field">ОРГАНИЗАЦИЯ</span>
+              <span class="passport-value passport-value--main">УЭЦ «Русское товарищество»</span>
+              <span class="passport-field">СТАТУС</span>
+              <span class="passport-value">Завершено</span>
+              <span class="passport-stamp">✓</span>
+            </div>
+
+            <div class="passport-row" data-detail="Курс «Основы предпринимательской деятельности». Фонд поддержки предпринимательства Республики Крым.">
+              <span class="passport-num">005</span>
+              <span class="passport-field">ТИП</span>
+              <span class="passport-value">Доп. образование</span>
+              <span class="passport-field">ОРГАНИЗАЦИЯ</span>
+              <span class="passport-value passport-value--main">Фонд поддержки предпринимательства</span>
+              <span class="passport-field">КУРС</span>
+              <span class="passport-value">Основы предпринимательства</span>
+              <span class="passport-stamp">✓</span>
+            </div>
+
+          </div>
+
+          <div class="passport-detail" id="passportDetail">
+            <span class="passport-detail-cursor">▋</span>
+            <span class="passport-detail-text" id="passportDetailText">Выберите запись для просмотра деталей</span>
+          </div>
+
+          <div class="passport-footer">
+            <span class="passport-footer-text">DUBOVIK / ARTEM / MEDIAMANAGER</span>
+            <span class="passport-footer-dots">● ● ●</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values -->
+      <section class="section">
+        <div class="section-header">
+          <span class="section-title">Ценности</span>
+        </div>
+        <div class="update-card">
+          <div class="update-icon">🧩</div>
+          <div class="update-body">
+            <div class="update-title">Системное мышление</div>
+            <div class="update-text">Смотрю на медиа как на продукт: контент, технологии, маркетинг и команда должны работать как единая система.</div>
+          </div>
+        </div>
+        <div class="update-card">
+          <div class="update-icon">📊</div>
+          <div class="update-body">
+            <div class="update-title">Решения на основе данных</div>
+            <div class="update-text">Стратегия строится на аналитике аудитории, метриках роста и эффективности контента.</div>
+          </div>
+        </div>
+        <div class="update-card">
+          <div class="update-icon">👥</div>
+          <div class="update-body">
+            <div class="update-title">Сильные команды</div>
+            <div class="update-text">Результат дают не процессы, а люди. Формирую команды, которые умеют создавать и масштабировать медиапродукты.</div>
+          </div>
+        </div>
+        <div class="update-card">
+          <div class="update-icon">⚙️</div>
+          <div class="update-body">
+            <div class="update-title">Технологии как инструмент роста</div>
+            <div class="update-text">Использую digital-инструменты, разработку и AI-решения для развития медиа и увеличения аудитории.</div>
+          </div>
+        </div>
+        <div class="update-card">
+          <div class="update-icon">🌱</div>
+          <div class="update-body">
+            <div class="update-title">Долгосрочное развитие</div>
+            <div class="update-text">Фокус на устойчивых медиапроектах, которые растут годами, а не на краткосрочных показателях.</div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Footer -->
+      <footer style="padding-top: 20px; border-top: 1px solid var(--border);">
+        <p style="font-size: 12px; color: var(--text-muted);">
+          © <span id="current-year"></span> Артём Дубовик · Медиаменеджер
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+<!-- Bottom Mobile Nav -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="index.html" class="bottom-nav-item">
+    <i class="fa-solid fa-house"></i>
+    <span>Главная</span>
+  </a>
+  <a href="about.html" class="bottom-nav-item active">
+    <i class="fa-solid fa-user"></i>
+    <span>Обо мне</span>
+  </a>
+  <a href="index.html#career" class="bottom-nav-item">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Карьера</span>
+  </a>
+  <a href="projects.html" class="bottom-nav-item">
+    <i class="fa-solid fa-handshake"></i>
+    <span>Проекты</span>
+  </a>
+  <a href="https://t.me/artemdubovik" target="_blank" class="bottom-nav-item">
+    <i class="fa-brands fa-telegram"></i>
+    <span>Telegram</span>
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script>
+  function toggleBio() {
+    const hidden = document.getElementById('bioHidden');
+    const btn    = document.getElementById('btnReadMore');
+    const isOpen = hidden.classList.contains('open');
+    hidden.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.innerHTML = isOpen
+      ? 'Подробнее <i class="fa-solid fa-chevron-down"></i>'
+      : 'Свернуть <i class="fa-solid fa-chevron-down"></i>';
+  }
+
+  // Passport block
+  function initPassport() {
+    const rows   = document.querySelectorAll('.passport-row');
+    const detailText = document.getElementById('passportDetailText');
+    if (!rows.length || !detailText) return;
+
+    let typeTimer = null;
+
+    function typeText(text) {
+      if (typeTimer) clearInterval(typeTimer);
+      detailText.textContent = '';
+      let i = 0;
+      typeTimer = setInterval(() => {
+        detailText.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(typeTimer);
+      }, 22);
+    }
+
+    rows.forEach(row => {
+      row.addEventListener('click', () => {
+        rows.forEach(r => r.classList.remove('active'));
+        row.classList.add('active');
+        typeText('> ' + row.getAttribute('data-detail'));
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initPassport);
+</script>
+</body>
+</html>

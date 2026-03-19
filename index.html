@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="./" />
+  <title>Артём Дубовик — Медиаменеджер</title>
+  <meta name="description" content="Медиаменеджер. Работаю с медиабрендами, превращая идеи и контент в масштабные цифровые проекты." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme');
+      if (t === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<header class="mobile-header">
+  <div class="mobile-header-logo">
+    <img src="images/avatar.jpg" alt="АД" class="mobile-header-avatar" />
+    <span class="mobile-header-name">Артём Дубовик</span>
+  </div>
+  <div class="mobile-header-actions">
+    <a href="tel:+79363332202" class="mobile-header-contact" title="+7 936 333 22 02">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="mailto:artem@dubovik.info" class="mobile-header-contact" title="artem@dubovik.info">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+    <button class="mobile-header-theme-btn" id="mobileThemeBtn" onclick="toggleThemeFromPanel()" title="Сменить тему">
+      <i class="fa-solid fa-moon" id="mobileThemeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <div class="sidebar-avatar" style="padding:0;overflow:hidden;"><img src="images/avatar.jpg" alt="Артём Дубовик" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;"></div>
+        <div class="sidebar-name">Артём Дубовик</div>
+        <div class="sidebar-role">Медиаменеджер</div>
+        <div class="sidebar-contacts">
+          <a href="tel:+79363332202" class="sidebar-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            +7 936 333 22 02
+          </a>
+          <a href="mailto:artem@dubovik.info" class="sidebar-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            artem@dubovik.info
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="nav-group">
+        <div class="nav-group-label">Навигация</div>
+        <a href="index.html" class="nav-item active">
+          <i class="fa-solid fa-house nav-icon"></i>
+          Главная
+        </a>
+        <a href="about.html" class="nav-item">
+          <i class="fa-solid fa-user nav-icon"></i>
+          Обо мне
+        </a>
+        <a href="index.html#career" class="nav-item">
+          <i class="fa-solid fa-briefcase nav-icon"></i>
+          Карьера
+        </a>
+        <a href="projects.html" class="nav-item">
+          <i class="fa-solid fa-folder-open nav-icon"></i>
+          Проекты
+        </a>
+      </nav>
+
+      <!-- Resources -->
+      <nav class="nav-group">
+        <div class="nav-group-label">Документы</div>
+        <a href="#" class="nav-item btn-download-resume">
+          <i class="fa-solid fa-file-arrow-down nav-icon"></i>
+          Скачать резюме
+        </a>
+      </nav>
+
+      <!-- Bottom Social -->
+      <div class="sidebar-bottom">
+        <div class="sidebar-social">
+          <a href="https://t.me/artemdubovik" class="social-link" target="_blank" title="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+            Telegram
+          </a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Переключить тему">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+          <span id="themeLabel">Светлая тема</span>
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+    <div class="page-content">
+
+      <!-- Hero -->
+      <section class="page-hero fade-in">
+        <span class="greeting" id="greeting-text">Добрый день</span>
+        <h1 class="page-title">Я Артём Дубовик, <span class="highlight shimmer">медиаменеджер.</span></h1>
+        <p class="page-subtitle" style="text-align: justify;">
+          Работаю с медиабрендами, превращая идеи и контент в масштабные цифровые проекты.<br>
+          Специализируюсь на развитии аудитории, редакционных стратегиях и управлении командами.<br>
+          Руковожу любимыми командами в медиа и являюсь CEO студии разработки <a href="https://mirmedia.org" target="_blank" class="inline-badge">Станция Мир</a>
+        </p>
+        <div class="btn-group">
+          <a href="projects.html" class="btn-primary">
+            <i class="fa-solid fa-folder-open"></i>
+            Смотреть проекты
+          </a>
+          <a href="about.html" class="btn-secondary">
+            Обо мне →
+          </a>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <div class="stats-row fade-in fade-in-delay-1">
+        <div class="stat-card">
+          <div class="stat-number">12<span>+</span></div>
+          <div class="stat-label">Лет в медиа</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">43<span>+</span></div>
+          <div class="stat-label">Проектов</div>
+        </div>
+      </div>
+
+      <!-- Career -->
+      <section class="section fade-in fade-in-delay-2" id="career">
+        <div class="section-header">
+          <span class="section-title">Карьера</span>
+        </div>
+
+        <div class="career-tabs">
+          <div class="career-list" id="careerList">
+
+            <div class="career-item active" data-index="0">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">Русская Медиагруппа</div>
+                  <div class="career-role">Директор деп. цифровых технологий</div>
+                </div>
+              </div>
+              <div class="career-period">2022 — н.в.</div>
+            </div>
+
+            <div class="career-item" data-index="1">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">Станция Мир</div>
+                  <div class="career-role">CEO</div>
+                </div>
+              </div>
+              <div class="career-period">2022 — н.в.</div>
+            </div>
+
+            <div class="career-item" data-index="2">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">Медиагруппа Ньюсфронт</div>
+                  <div class="career-role">Шеф-редактор</div>
+                </div>
+              </div>
+              <div class="career-period">2019 — 2022</div>
+            </div>
+
+            <div class="career-item" data-index="3">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">Фонд науки, культуры и кино</div>
+                  <div class="career-role">Руководитель по проектной деятельности</div>
+                </div>
+              </div>
+              <div class="career-period">2018</div>
+            </div>
+
+            <div class="career-item" data-index="4">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">Российский союз молодёжи</div>
+                  <div class="career-role">Руководитель отделения в Крыму</div>
+                </div>
+              </div>
+              <div class="career-period">2015 — 2017</div>
+            </div>
+
+            <div class="career-item" data-index="5">
+              <div class="career-item-left">
+                <div class="career-dot"></div>
+                <div class="career-info">
+                  <div class="career-company">ИАЦ Analitik24</div>
+                  <div class="career-role">Соучредитель</div>
+                </div>
+              </div>
+              <div class="career-period">2014 — 2015</div>
+            </div>
+
+          </div>
+
+          <div class="career-detail" id="careerDetail">
+
+            <div class="career-panel active" data-panel="0">
+              <div class="career-panel-header">
+                <div class="career-panel-badge">Сейчас</div>
+                <div class="career-panel-title">Русская Медиагруппа</div>
+                <div class="career-panel-role">Директор департамента цифровых технологий</div>
+                <div class="career-panel-period">2022 — настоящее время</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Формирование департамента цифровых технологий с нуля: структура, процессы, команды</li>
+                <li>Управление digital-производством: контент, видео, дизайн, SMM, performance, разработка</li>
+                <li>Реализация стратегии цифровой трансформации медиаресурсов холдинга</li>
+                <li>Внедрение AI-решений и технологических продуктов</li>
+                <li>Разработка и запуск digital-продуктов для роста аудитории и охватов</li>
+                <li>Партнёрства с медиа-платформами и кросс-промо проекты с медиахолдингами</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Digital</span>
+                <span class="timeline-tag">AI</span>
+                <span class="timeline-tag">Трансформация</span>
+                <span class="timeline-tag">SMM</span>
+                <span class="timeline-tag">Performance</span>
+              </div>
+            </div>
+
+            <div class="career-panel" data-panel="1">
+              <div class="career-panel-header">
+                <div class="career-panel-badge">Сейчас</div>
+                <div class="career-panel-title">Станция Мир</div>
+                <div class="career-panel-role">CEO</div>
+                <div class="career-panel-period">2022 — настоящее время · 4 года</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Стратегическое управление студией разработки и операционное руководство проектным портфелем</li>
+                <li>Реализация комплексных digital- и IT-решений для бизнеса и государственных структур</li>
+                <li>Управление full-stack разработкой: от архитектуры и проектирования до запуска и сопровождения</li>
+                <li>Внедрение AI-интеграций и автоматизированных решений под бизнес- и отраслевые задачи</li>
+                <li>Успешная реализация сложных технологических и инфраструктурных проектов за 4 года работы</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Full-stack</span>
+                <span class="timeline-tag">AI</span>
+                <span class="timeline-tag">IT-решения</span>
+                <span class="timeline-tag">Стратегия</span>
+                <span class="timeline-tag">Управление</span>
+              </div>
+            </div>
+
+            <div class="career-panel" data-panel="2">
+              <div class="career-panel-header">
+                <div class="career-panel-title">ООО «Медиагруппа Ньюсфронт»</div>
+                <div class="career-panel-role">Шеф-редактор</div>
+                <div class="career-panel-period">2019 — 2022 · 3 года</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Управление редакционной командой и операционными процессами контент-производства</li>
+                <li>Формирование контентной повестки и работа с редакторами</li>
+                <li>Разработка контент-стратегии для роста трафика и аудитории ресурсов</li>
+                <li>Выстраивание работы с медиа-платформами и дистрибуции контента</li>
+                <li>Курирование технической разработки медиа-ресурсов</li>
+                <li>Реализация PR-проектов и информационных кампаний на зарубежную аудиторию</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Редакция</span>
+                <span class="timeline-tag">Контент</span>
+                <span class="timeline-tag">PR</span>
+                <span class="timeline-tag">Дистрибуция</span>
+              </div>
+            </div>
+
+            <div class="career-panel" data-panel="3">
+              <div class="career-panel-header">
+                <div class="career-panel-title">Фонд содействия развитию науки, культуры и кино</div>
+                <div class="career-panel-role">Руководитель по проектной деятельности и молодёжной политике</div>
+                <div class="career-panel-period">2018</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Управление проектной командой и реализация программ Фонда</li>
+                <li>Разработка и запуск культурных и общественных проектов</li>
+                <li>Организация мероприятий республиканского уровня</li>
+                <li>Создание и развитие направлений SMM и продвижения</li>
+                <li>Курирование медиаконтента: пресс-релизы, анонсы, ТВ-материалы</li>
+                <li>Развитие молодёжных программ и работа с НКО</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Проекты</span>
+                <span class="timeline-tag">SMM</span>
+                <span class="timeline-tag">НКО</span>
+                <span class="timeline-tag">Мероприятия</span>
+              </div>
+            </div>
+
+            <div class="career-panel" data-panel="4">
+              <div class="career-panel-header">
+                <div class="career-panel-title">Российский союз молодёжи</div>
+                <div class="career-panel-role">Руководитель отделения в Крыму</div>
+                <div class="career-panel-period">2015 — 2017 · 2 года</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Управление региональным отделением и проектной деятельностью</li>
+                <li>Реализация федеральных и региональных программ организации</li>
+                <li>Организация форумов, мероприятий и общественных площадок</li>
+                <li>Развитие структуры организации до 250 участников</li>
+                <li>Партнёрство с бизнесом и органами власти Крыма</li>
+                <li>Привлечение финансирования и поддержка проектов</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Регион</span>
+                <span class="timeline-tag">Молодёжь</span>
+                <span class="timeline-tag">Партнёрства</span>
+                <span class="timeline-tag">Мероприятия</span>
+              </div>
+            </div>
+
+            <div class="career-panel" data-panel="5">
+              <div class="career-panel-header">
+                <div class="career-panel-title">ИАЦ Analitik24</div>
+                <div class="career-panel-role">Соучредитель</div>
+                <div class="career-panel-period">2014 — 2015</div>
+              </div>
+              <ul class="career-panel-list">
+                <li>Создание и развитие сетевого медиа-проекта</li>
+                <li>Формирование редакционной повестки и контент-плана</li>
+                <li>Продвижение издания и развитие SMM-направления</li>
+                <li>Формирование команды и операционное управление</li>
+                <li>Привлечение инвестиций и развитие партнёрств с медиа</li>
+                <li>Заключение партнёрских соглашений по разработке, дизайну, видео- и PR-поддержке</li>
+              </ul>
+              <div class="career-panel-tags">
+                <span class="timeline-tag">Стартап</span>
+                <span class="timeline-tag">Медиа</span>
+                <span class="timeline-tag">SMM</span>
+                <span class="timeline-tag">Инвестиции</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Чем занимаюсь -->
+      <section class="section fade-in fade-in-delay-2">
+        <div class="section-header">
+          <span class="section-title">Чем занимаюсь</span>
+        </div>
+        <div class="cards-grid cards-grid-2">
+          <div class="card">
+            <span class="card-tag">Стратегия</span>
+            <div class="card-title">Контент-стратегия</div>
+            <div class="card-text">Разрабатываю редакционные стратегии, которые соответствуют бизнес-целям и отвечают потребностям аудитории.</div>
+          </div>
+          <div class="card">
+            <span class="card-tag">Управление</span>
+            <div class="card-title">Команды и процессы</div>
+            <div class="card-text">Строю редакции с нуля, внедряю эффективные рабочие процессы и развиваю editorial-культуру.</div>
+          </div>
+          <div class="card">
+            <span class="card-tag">Запуск</span>
+            <div class="card-title">Новые медиапроекты</div>
+            <div class="card-text">Запускаю медиапродукты: от концепции и MVP до первой аудитории и бизнес-модели.</div>
+          </div>
+          <div class="card">
+            <span class="card-tag">Рост</span>
+            <div class="card-title">Развитие аудитории</div>
+            <div class="card-text">Выстраиваю органические и платные каналы привлечения аудитории с фокусом на удержание.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ключевые навыки -->
+      <section class="section fade-in fade-in-delay-2">
+        <div class="section-header">
+          <span class="section-title">Ключевые навыки</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-name">Управление командами</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Разработка и ноу-хау</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Digital-маркетинг</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Аналитика и данные</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">AI</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Автоматизация процессов</div>
+            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- В хорошей компании -->
+      <section class="section fade-in fade-in-delay-3" id="partners">
+        <div class="section-header">
+          <span class="section-title">В хорошей компании</span>
+        </div>
+
+        <div class="logos-grid">
+
+          <a href="https://rusradio.ru" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/rusradio.png?v=2" alt="Русское Радио" />
+            </div>
+          </a>
+
+          <a href="https://maximum.ru" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/maximum.png?v=7" alt="Maximum" />
+            </div>
+          </a>
+
+          <a href="https://ru.tv" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/rutv.png?v=2" alt="RU.TV" />
+            </div>
+          </a>
+
+          <a href="https://news-front.su" target="_blank" class="logo-card logo-card-dark">
+            <div class="logo-card-inner">
+              <img src="images/logos/newsfront.png?v=2" alt="News Front" />
+            </div>
+          </a>
+
+          <a href="https://dfm.ru" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/dfm.png?v=2" alt="DFM" />
+            </div>
+          </a>
+
+          <a href="https://hitfm.ru" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/hitfm.png?v=2" alt="Hit FM" />
+            </div>
+          </a>
+
+          <a href="https://montecarlo.ru" target="_blank" class="logo-card logo-card-light">
+            <div class="logo-card-inner">
+              <img src="images/logos/montecarlo.png?v=2" alt="Monte Carlo" />
+            </div>
+          </a>
+
+          <a href="https://khogov.ru" target="_blank" class="logo-card logo-card-dark">
+            <div class="logo-card-inner">
+              <img src="images/logos/khogov.png" alt="Khogov" />
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+
+
+      <!-- Tags / Interests -->
+      <section class="section">
+        <div class="section-header">
+          <span class="section-title">Специализация</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Контент-стратегия</span>
+          <span class="tag">Медиабренды</span>
+          <span class="tag">Digital-медиа</span>
+          <span class="tag">Топ-менеджмент</span>
+          <span class="tag">Digital-маркетинг</span>
+          <span class="tag">AI</span>
+          <span class="tag">Автоматизация</span>
+          <span class="tag">Управление большими командами</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Аналитика</span>
+          <span class="tag">Нативная реклама</span>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer style="padding-top: 20px; border-top: 1px solid var(--border);">
+        <p style="font-size: 12px; color: var(--text-muted);">
+          © <span id="current-year"></span> Артём Дубовик · Медиаменеджер
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+<!-- Bottom Mobile Nav -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="index.html" class="bottom-nav-item active">
+    <i class="fa-solid fa-house"></i>
+    <span>Главная</span>
+  </a>
+  <a href="about.html" class="bottom-nav-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Обо мне</span>
+  </a>
+  <a href="#career" class="bottom-nav-item">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Карьера</span>
+  </a>
+  <a href="projects.html" class="bottom-nav-item">
+    <i class="fa-solid fa-handshake"></i>
+    <span>Проекты</span>
+  </a>
+  <a href="https://t.me/artemdubovik" target="_blank" class="bottom-nav-item">
+    <i class="fa-brands fa-telegram"></i>
+    <span>Telegram</span>
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="./" />
+  <title>Проекты — Артём Дубовик</title>
+  <meta name="description" content="Проектный опыт Артёма Дубовика — мероприятия, цифровые разработки, медиаплатформы." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme');
+      if (t === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    })();
+  </script>
+  <style>
+    /* ── Projects page specific ── */
+
+    .projects-hero {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .projects-hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .projects-hero-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .projects-hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* NDA-баннер */
+    .nda-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-mid);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 40px;
+    }
+    .nda-banner-icon {
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .nda-banner-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .nda-banner-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Фильтр-табы */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .filter-tab {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .filter-tab:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Секции проектов */
+    .projects-section {
+      margin-bottom: 48px;
+    }
+
+    .projects-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .projects-section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .projects-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .projects-section-count {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2px 8px;
+      margin-left: auto;
+    }
+
+    /* Карточки событий */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      transition: border-color var(--transition), transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .event-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .event-card:hover::before {
+      opacity: 1;
+    }
+
+    .event-card-emoji {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .event-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .event-card-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Список digital-проектов */
+    .digital-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .digital-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      transition: border-color var(--transition), background var(--transition);
+      cursor: default;
+    }
+    .digital-item:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .digital-item-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .digital-item-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .digital-item-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 7px;
+      white-space: nowrap;
+    }
+
+    /* Платформы */
+    .platforms-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .platform-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    .platform-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .platform-chip i {
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* Блок масштаб */
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .scale-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      text-align: center;
+      transition: border-color var(--transition), transform 0.2s ease;
+    }
+    .scale-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .scale-card-icon {
+      font-size: 20px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .scale-card-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* CTA-блок */
+    .projects-cta {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-align: center;
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .projects-cta-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .projects-cta-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 22px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .projects-cta-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Анимация появления секций */
+    .proj-section-hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .proj-section-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 560px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      .scale-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-cta {
+        padding: 24px 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .scale-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<header class="mobile-header">
+  <div class="mobile-header-logo">
+    <img src="images/avatar.jpg" alt="АД" class="mobile-header-avatar" />
+    <span class="mobile-header-name">Артём Дубовик</span>
+  </div>
+  <div class="mobile-header-actions">
+    <a href="tel:+79363332202" class="mobile-header-contact" title="+7 936 333 22 02">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="mailto:artem@dubovik.info" class="mobile-header-contact" title="artem@dubovik.info">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+    <button class="mobile-header-theme-btn" id="mobileThemeBtn" onclick="toggleThemeFromPanel()" title="Сменить тему">
+      <i class="fa-solid fa-moon" id="mobileThemeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+
+      <div class="sidebar-brand">
+        <div class="sidebar-avatar" style="padding:0;overflow:hidden;"><img src="images/avatar.jpg" alt="Артём Дубовик" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;"></div>
+        <div class="sidebar-name">Артём Дубовик</div>
+        <div class="sidebar-role">Медиаменеджер</div>
+        <div class="sidebar-contacts">
+          <a href="tel:+79363332202" class="sidebar-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            +7 936 333 22 02
+          </a>
+          <a href="mailto:artem@dubovik.info" class="sidebar-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            artem@dubovik.info
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav-group">
+        <div class="nav-group-label">Навигация</div>
+        <a href="index.html" class="nav-item">
+          <i class="fa-solid fa-house nav-icon"></i>
+          Главная
+        </a>
+        <a href="about.html" class="nav-item">
+          <i class="fa-solid fa-user nav-icon"></i>
+          Обо мне
+        </a>
+        <a href="index.html#career" class="nav-item">
+          <i class="fa-solid fa-briefcase nav-icon"></i>
+          Карьера
+        </a>
+        <a href="projects.html" class="nav-item active">
+          <i class="fa-solid fa-folder-open nav-icon"></i>
+          Проекты
+        </a>
+      </nav>
+
+      <nav class="nav-group">
+        <div class="nav-group-label">Документы</div>
+        <a href="#" class="nav-item btn-download-resume">
+          <i class="fa-solid fa-file-arrow-down nav-icon"></i>
+          Скачать резюме
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-social">
+          <a href="https://t.me/artemdubovik" class="social-link" target="_blank">
+            <i class="fa-brands fa-telegram"></i>
+            Telegram
+          </a>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+          <span id="themeLabel">Светлая тема</span>
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+    <div class="page-content">
+
+      <!-- Hero -->
+      <div class="projects-hero proj-section-hidden">
+        <div class="projects-hero-label">Портфолио</div>
+        <h1 class="projects-hero-title">Проектный<br>опыт</h1>
+        <p class="projects-hero-desc">
+          Медиапроекты, цифровые разработки и крупные мероприятия — 
+          публичная часть того, над чем я работал.
+        </p>
+      </div>
+
+      <!-- NDA-баннер -->
+      <div class="nda-banner proj-section-hidden">
+        <span class="nda-banner-icon"><i class="fa-solid fa-lock"></i></span>
+        <div class="nda-banner-text">
+          <strong>Значительная часть проектов реализуется в формате NDA.</strong><br>
+          Здесь представлена лишь часть публичных инициатив. Фактический объём существенно шире — 
+          включает запуск медиаплатформ, цифровых продуктов, крупных мероприятий и маркетинговых стратегий для медиабрендов.
+        </div>
+      </div>
+
+      <!-- Фильтр -->
+      <div class="filter-tabs proj-section-hidden">
+        <button class="filter-tab active" data-filter="all" data-target="">Все</button>
+        <button class="filter-tab" data-filter="events" data-target="section-events">Мероприятия</button>
+        <button class="filter-tab" data-filter="digital" data-target="section-digital">Digital</button>
+        <button class="filter-tab" data-filter="platforms" data-target="section-platforms">Платформы</button>
+      </div>
+
+      <!-- 1. Крупные мероприятия -->
+      <section class="projects-section proj-section-hidden" id="section-events" data-category="events">
+        <div class="projects-section-header">
+          <div class="projects-section-icon">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <span class="projects-section-title">Крупные мероприятия</span>
+        </div>
+        <div class="events-grid">
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-trophy"></i></div>
+            <div class="event-card-title">Премия музыкального телеканала RU.TV</div>
+            <div class="event-card-meta">Национальная премия · Медиа</div>
+          </div>
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-record-vinyl"></i></div>
+            <div class="event-card-title">«Золотой Граммофон»</div>
+            <div class="event-card-meta">Национальная музыкальная премия</div>
+          </div>
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            <div class="event-card-title">GrillFest Maximum</div>
+            <div class="event-card-meta">Музыкальный фестиваль</div>
+          </div>
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-earth-europe"></i></div>
+            <div class="event-card-title">BRAVO International</div>
+            <div class="event-card-meta">Международная профессиональная премия</div>
+          </div>
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-microphone-lines"></i></div>
+            <div class="event-card-title">«Звёзды Хайпа»</div>
+            <div class="event-card-meta">Музыкальный фестиваль · Москва</div>
+          </div>
+          <div class="event-card">
+            <div class="digital-item-icon" style="margin-bottom:10px;"><i class="fa-solid fa-plane-departure"></i></div>
+            <div class="event-card-title">Best Music Fest</div>
+            <div class="event-card-meta">Международный фестиваль · Дубай</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Digital & медиазапуски -->
+      <section class="projects-section proj-section-hidden" id="section-digital" data-category="digital">
+        <div class="projects-section-header">
+          <div class="projects-section-icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <span class="projects-section-title">Digital & медиазапуски</span>
+        </div>
+        <div class="digital-list">
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-photo-film"></i></div>
+            <div class="digital-item-text">Сотни медиазапусков на VK, Rutube, OK, MAX, Telegram, YouTube, Likee, TikTok, Дзен</div>
+            <span class="digital-item-tag">Медиа</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-newspaper"></i></div>
+            <div class="digital-item-text">Запуск медиапроектов с выходом в Яндекс.Новости и Дзен</div>
+            <span class="digital-item-tag">SEO</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div class="digital-item-text">Десятки коллабораций с артистами и шоу-бизнесом для «Русской Медиагруппы»</div>
+            <span class="digital-item-tag">Партнёры</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-building"></i></div>
+            <div class="digital-item-text">Организация общественно значимых мероприятий в Республике Крым (2015–2016)</div>
+            <span class="digital-item-tag">Events</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-radio"></i></div>
+            <div class="digital-item-text">Медиазапуски и цифровые кампании для Хит FM, MAXIMUM, DFM</div>
+            <span class="digital-item-tag">Радио</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Цифровые разработки -->
+      <section class="projects-section proj-section-hidden" id="section-platforms" data-category="platforms">
+        <div class="projects-section-header">
+          <div class="projects-section-icon">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="projects-section-title">Цифровые разработки</span>
+        </div>
+        <div class="digital-list">
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="digital-item-text">Новостной портал и цифровая экосистема медиахолдинга NEWS-FRONT</div>
+            <span class="digital-item-tag">Портал</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-tv"></i></div>
+            <div class="digital-item-text">Разработка и запуск платформы Телерадиокомпании «Таврия»</div>
+            <span class="digital-item-tag">ТРК</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="digital-item-text">Цифровые решения для Официального представительства Херсонской области в Крыму</div>
+            <span class="digital-item-tag">Гос.</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="digital-item-text">Официальный портал губернатора Херсонской области</div>
+            <span class="digital-item-tag">Гос.</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-droplet"></i></div>
+            <div class="digital-item-text">Коммерческие проекты для бренда «Вода Каховка»</div>
+            <span class="digital-item-tag">FMCG</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="digital-item-text">Full-stack сопровождение цифровых активов холдинга «Русская Медиагруппа»</div>
+            <span class="digital-item-tag">Холдинг</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="digital-item-text">Маркетинговые и digital-разработки для энергетика Black Wolf</div>
+            <span class="digital-item-tag">FMCG</span>
+          </div>
+          <div class="digital-item">
+            <div class="digital-item-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+            <div class="digital-item-text">Цифровые проекты для строительных компаний Республики Крым</div>
+            <span class="digital-item-tag">B2B</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Платформы -->
+      <section class="projects-section proj-section-hidden" data-category="platforms">
+        <div class="projects-section-header">
+          <div class="projects-section-icon">
+            <i class="fa-solid fa-share-nodes"></i>
+          </div>
+          <span class="projects-section-title">Цифровые платформы</span>
+        </div>
+        <div class="platforms-wrap">
+          <div class="platform-chip"><i class="fa-brands fa-vk"></i> VK</div>
+          <div class="platform-chip"><i class="fa-brands fa-youtube"></i> YouTube</div>
+          <div class="platform-chip"><i class="fa-brands fa-telegram"></i> Telegram</div>
+          <div class="platform-chip"><i class="fa-brands fa-tiktok"></i> TikTok</div>
+          <div class="platform-chip"><i class="fa-solid fa-play"></i> Rutube</div>
+          <div class="platform-chip"><i class="fa-solid fa-circle-play"></i> OK</div>
+          <div class="platform-chip"><i class="fa-solid fa-fire"></i> Дзен</div>
+          <div class="platform-chip"><i class="fa-solid fa-heart"></i> Likee</div>
+          <div class="platform-chip"><i class="fa-solid fa-newspaper"></i> Яндекс.Новости</div>
+          <div class="platform-chip"><i class="fa-solid fa-film"></i> MAX</div>
+        </div>
+      </section>
+
+      <!-- 5. Масштаб -->
+      <section class="projects-section proj-section-hidden" data-category="all">
+        <div class="projects-section-header">
+          <div class="projects-section-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <span class="projects-section-title">Масштаб и экспертиза</span>
+        </div>
+        <div class="scale-grid">
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="scale-card-text">Запуск медиаплатформ и редакционных продуктов</div>
+          </div>
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="scale-card-text">Цифровые стратегии и маркетинговые кампании</div>
+          </div>
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-code"></i></div>
+            <div class="scale-card-text">Разработка и развитие медиасервисов</div>
+          </div>
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-trophy"></i></div>
+            <div class="scale-card-text">Организация крупных событий и индустриальных премий</div>
+          </div>
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-people-group"></i></div>
+            <div class="scale-card-text">Работа с артистами, брендами и медиахолдингами</div>
+          </div>
+          <div class="scale-card">
+            <div class="scale-card-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="scale-card-text">Международные проекты и коллаборации</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="projects-cta proj-section-hidden">
+        <div class="projects-cta-title">Есть задача?</div>
+        <p class="projects-cta-text">
+          Если ваш проект требует нестандартных решений или редких компетенций — 
+          я выстраиваю команду и довожу до результата.
+        </p>
+        <div class="projects-cta-btns">
+          <a href="mailto:artem@dubovik.info" class="btn-primary">
+            <i class="fa-solid fa-envelope"></i>
+            Написать
+          </a>
+          <a href="https://t.me/artemdubovik" target="_blank" class="btn-secondary">
+            <i class="fa-brands fa-telegram"></i>
+            Telegram
+          </a>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <span>© <span class="year"></span> Артём Дубовик</span>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<!-- Bottom Mobile Nav -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="index.html" class="bottom-nav-item">
+    <i class="fa-solid fa-house"></i>
+    <span>Главная</span>
+  </a>
+  <a href="about.html" class="bottom-nav-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Обо мне</span>
+  </a>
+  <a href="index.html#career" class="bottom-nav-item">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Карьера</span>
+  </a>
+  <a href="projects.html" class="bottom-nav-item active">
+    <i class="fa-solid fa-handshake"></i>
+    <span>Проекты</span>
+  </a>
+  <a href="https://t.me/artemdubovik" target="_blank" class="bottom-nav-item">
+    <i class="fa-brands fa-telegram"></i>
+    <span>Telegram</span>
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script>
+  // Фильтр-табы со скроллом к секции
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+      const target = tab.getAttribute('data-target');
+
+      document.querySelectorAll('.projects-section').forEach(sec => {
+        const cat = sec.getAttribute('data-category');
+        if (filter === 'all' || cat === filter || cat === 'all') {
+          sec.style.display = '';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      // Скроллим к нужной секции (кроме «Все»)
+      if (target) {
+        const el = document.getElementById(target);
+        if (el) {
+          const headerH = window.innerWidth <= 900 ? 44 : 0;
+          setTimeout(() => {
+            const top = el.getBoundingClientRect().top + window.scrollY - headerH - 16;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }, 50);
+        }
+      }
+    });
+  });
+
+  // Появление секций при скролле
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('proj-section-visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.proj-section-hidden').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
